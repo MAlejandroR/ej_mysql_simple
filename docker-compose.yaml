@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql
+    container_name: "myqsl"
+    environment:
+      - MYSQL_USER=dwes
+      - MYSQL_PASSWORD=abc123.
+      - MYSQL_DATABASE=dwes
+      - MYSQL_ROOT_PASSWORD=manuel
+    ports:
+      - 23306:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql_data
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: "manuel-phpmyadmin"
+    ports:
+      - 8800:80
+    depends_on:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
